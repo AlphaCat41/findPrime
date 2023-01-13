@@ -15,18 +15,23 @@ function findPrime(position: number) {
             }
         }
         if(isPrime){
-            console.log(natural)
+            // console.log(natural)
             list_prime.push(natural);
         }
         isPrime = true;
         natural++
     }
-
-    return list_prime[position];
+    console.log(list_prime)
+    return list_prime[position - 1];
    
-  }
-  
-  console.log(findPrime(2000));//17389
+}
+var start = new Date().getTime();
+
+// console.log(findPrime(2000));//17389
 //   console.log(findPrime(50000));//611953
-//   console.log(findPrime(1000000));//15485863
-  // console.log(findPrime(20000000)); 
+  console.log(findPrime(1000000));//15485863
+// console.log(findPrime(20000000)); 
+
+var end = new Date().getTime();
+var time = end - start;
+console.log('Execution time(sec): ' + time / 1000);
