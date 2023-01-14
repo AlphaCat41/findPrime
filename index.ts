@@ -1,37 +1,34 @@
-function findPrime(position: number) {
+var MAX_SIZE = 2 * 10 ** 4;
 
-    var list_prime = [2];
-    var natural = 3
-    var isPrime = true;
+function SieveOfEratosthenes(primes: number[])
+{
+	var IsPrime = Array(MAX_SIZE).fill(true);
+	
+	var p: number, i: number;
+	for (p = 2; p * p < MAX_SIZE; p++){ // p * p = next number of p
+		if (IsPrime[p] == true){
+			for(i = p * p; i < MAX_SIZE; i += p) 
+            // 4 6 8 10 12 ....
+				IsPrime[i] = false;
+		}
+	}
 
-    while(true){
-        if(list_prime.length -1 === position){
-            break
+	for (p = 2; p < MAX_SIZE; p++){
+		if (IsPrime[p]){
+			primes.push(p);
         }
-        for(var j = 0; j < list_prime.length; j++){
-            if(natural % list_prime[j] === 0){
-            isPrime = false;
-            break;
-            }
-        }
-        if(isPrime){
-            // console.log(natural)
-            list_prime.push(natural);
-        }
-        isPrime = true;
-        natural++
     }
-    console.log(list_prime)
-    return list_prime[position - 1];
-   
 }
-var start = new Date().getTime();
 
-// console.log(findPrime(2000));//17389
-//   console.log(findPrime(50000));//611953
-  console.log(findPrime(1000000));//15485863
-// console.log(findPrime(20000000)); 
 
-var end = new Date().getTime();
-var time = end - start;
-console.log('Execution time(sec): ' + time / 1000);
+var primes: number[] = [];
+
+// Function call
+SieveOfEratosthenes(primes);
+
+console.log("1th is ",primes[0])
+console.log("2,000th is ",primes[1999])
+
+	
+
+
